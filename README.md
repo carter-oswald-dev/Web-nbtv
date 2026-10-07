@@ -1,4 +1,4 @@
-# Nipkow
+# Web nbtv
 
 **Narrow-band television in your browser.** Turn a webcam, video or picture into a mechanical-television signal you can save as a WAV file, and watch NBTV recordings, or live signals from a microphone, on a virtual televisor. Everything runs in a single HTML file, so it works on Windows, macOS, Linux, ChromeOS, Android and iOS with nothing to install.
 
