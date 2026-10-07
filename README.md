@@ -1,6 +1,6 @@
-# Web nbtv
+# Nipkow
 
-**Narrow-band television in your browser.** Turn a webcam, video or picture into a mechanical-television signal you can save as a WAV file, and watch NBTV recordings, or live signals from a microphone, on a virtual televisor. Everything runs in a single HTML file, so it works on Windows, macOS, Linux, ChromeOS, Android and iOS with nothing to install.
+**Narrow-band television in your browser.** Turn a webcam, video or picture into a mechanical-television signal you can save as a WAV file, and watch NBTV recordings, or live signals from a microphone, on a virtual televisor. Everything it needs lives in this repository, so it works fully offline on Windows, macOS, Linux, ChromeOS, Android and iOS with nothing to install.
 
 ## Why this exists
 
@@ -59,9 +59,23 @@ All formats run at 12.5 frames per second. Formats with the same number of lines
 
 **Video export.** The decoder produces one picture per frame, timed from the actual sync pulses. The browser's built-in WebCodecs encoder compresses them to H.264, and they are packaged as MP4.
 
+## What's in the repository
+
+```
+index.html                 the whole app
+README.md                  this file
+vendor/mp4-muxer.js        packages video into MP4 files (third-party, MIT)
+vendor/mp4-muxer-LICENSE.txt
+fonts/josefin-sans-latin-600-normal.woff2   heading font (third-party, SIL OFL)
+fonts/josefin-sans-latin-700-normal.woff2
+fonts/OFL.txt
+```
+
+Nothing is loaded from the internet. If the font files are missing, a similar system font is used. If `mp4-muxer.js` is missing, everything except video export still works. All of these files are included.
+
 ## Using it
 
-1. Open `index.html` in a recent browser, or visit your GitHub Pages address.
+1. Open `index.html` in a recent browser, or visit your GitHub Pages address. Opening it straight from a downloaded copy of the repository works with no internet connection.
 2. Choose a **Format** at the top.
 3. To make a recording: choose **Use camera**, **Choose video** or **Choose picture**, press **Record**, then **Download WAV**.
 4. To watch a recording: choose **Open audio file**.
@@ -72,12 +86,12 @@ Test cards for checking playback are on the [NBSC downloads page](http://authori
 
 ## Putting it on GitHub Pages
 
-1. Create a new repository and upload `index.html` and `README.md`.
+1. Create a new repository and upload everything, including the `vendor` and `fonts` folders.
 2. Go to **Settings → Pages**.
 3. Under **Build and deployment**, choose **Deploy from a branch**, select `main` and `/ (root)`, and save.
 4. After a minute or so the app is live at `https://<your-username>.github.io/<repository-name>/`.
 
-Camera and microphone access need a secure connection. GitHub Pages provides HTTPS, so this works there. When opening the file directly from disk, some browsers may block the camera or microphone.
+Camera and microphone access need a secure connection. GitHub Pages provides HTTPS, and Chrome, Edge and Firefox also allow it for files opened from disk. If a browser blocks the camera from a local file, run a small local server in the folder instead, for example `python -m http.server`, and open `http://localhost:8000`.
 
 ## Browser support
 
@@ -86,7 +100,7 @@ Camera and microphone access need a secure connection. GitHub Pages provides HTT
 | Transmit, receive, WAV export | Yes | Yes | Yes |
 | Video export | Yes | Recent versions | Yes, but may be silent |
 
-Video export downloads one small helper library, [mp4-muxer](https://github.com/Vanilagy/mp4-muxer) (MIT licence), from a public CDN the first time it's used. Everything else works offline.
+Video export uses the browser's built-in WebCodecs encoder and a bundled copy of [mp4-muxer](https://github.com/Vanilagy/mp4-muxer) (MIT licence).
 
 ## Known limitations
 
@@ -103,3 +117,5 @@ Video export downloads one small helper library, [mp4-muxer](https://github.com/
 - Dominic Beesley, [NBSC](http://authorityfile.co.uk/NBSC/Home/About): the NBSC colour format and the original NBSC Player
 - [Narrow-bandwidth Television Association](https://www.nbtv.org.uk), for the 32-line club standard and decades of mechanical-television work
 - John Logie Baird, who demonstrated the first working television in 1926
+- [mp4-muxer](https://github.com/Vanilagy/mp4-muxer) by Vanilagy, MIT licence
+- [Josefin Sans](https://fonts.google.com/specimen/Josefin+Sans) by Santiago Orozco, SIL Open Font License
